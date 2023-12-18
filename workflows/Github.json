@@ -1,0 +1,203 @@
+{
+  "active": true,
+  "connections": {
+    "Github Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Github Trigger2": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-13T14:13:19.453Z",
+  "id": "6ztpU6Rr1Kw6hFdB",
+  "name": "Github",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": {
+          "__rl": true,
+          "value": "a-kbv",
+          "mode": "list",
+          "cachedResultName": "a-kbv",
+          "cachedResultUrl": "https://github.com/a-kbv"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "php-skype",
+          "mode": "list",
+          "cachedResultName": "php-skype",
+          "cachedResultUrl": "https://github.com/a-kbv/php-skype"
+        },
+        "events": [
+          "*"
+        ]
+      },
+      "id": "a2a4e967-a571-45c1-80d4-d3229c5aed77",
+      "name": "Github Trigger",
+      "type": "n8n-nodes-base.githubTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        380
+      ],
+      "webhookId": "77557619-73a4-4dcf-8629-e252d81e9061",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "xeTUnsoBsthaJOOd",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1001946690670",
+        "text": "={{ $json.body.sender.login }} - {{ $json.body.action }} - {{ $json.body.repository.full_name }}",
+        "additionalFields": {}
+      },
+      "id": "d604b3e4-44fc-4f9b-9c5f-7de7ed508d95",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        380
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "CHQ9sHdDu1TkjoG6",
+          "name": "Github Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": {
+          "__rl": true,
+          "value": "a-kbv",
+          "mode": "list",
+          "cachedResultName": "a-kbv",
+          "cachedResultUrl": "https://github.com/a-kbv"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "bash-helper",
+          "mode": "list",
+          "cachedResultName": "bash-helper",
+          "cachedResultUrl": "https://github.com/a-kbv/bash-helper"
+        },
+        "events": [
+          "*"
+        ]
+      },
+      "id": "22d84676-0d1b-4eaf-aa60-ad9059e7a412",
+      "name": "Github Trigger1",
+      "type": "n8n-nodes-base.githubTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        520
+      ],
+      "webhookId": "b396459a-7c9e-4669-b78e-32cd2507eb22",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "xeTUnsoBsthaJOOd",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "owner": {
+          "__rl": true,
+          "value": "a-kbv",
+          "mode": "list",
+          "cachedResultName": "a-kbv",
+          "cachedResultUrl": "https://github.com/a-kbv"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "bash-helper",
+          "mode": "list",
+          "cachedResultName": "bash-helper",
+          "cachedResultUrl": "https://github.com/a-kbv/bash-helper"
+        },
+        "events": [
+          "*"
+        ]
+      },
+      "id": "c89c8c78-9fd7-42ea-a836-871d16791c09",
+      "name": "Github Trigger2",
+      "type": "n8n-nodes-base.githubTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        660
+      ],
+      "webhookId": "5392ee15-c3e2-4153-b43d-2529ce5b6018",
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "xeTUnsoBsthaJOOd",
+          "name": "GitHub account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Github Trigger": {
+      "webhookId": 438000389,
+      "webhookEvents": [
+        "*"
+      ]
+    },
+    "node:Github Trigger1": {
+      "webhookId": 438000390,
+      "webhookEvents": [
+        "*"
+      ]
+    },
+    "node:Github Trigger2": {
+      "webhookId": 438000391,
+      "webhookEvents": [
+        "*"
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2023-10-13T14:29:33.268Z",
+  "versionId": "1cb34fb7-ffd3-4722-8780-6a51477eee86"
+}
