@@ -1,0 +1,234 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Move Binary Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Move Binary Data": {
+      "main": [
+        [
+          {
+            "node": "SSH",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-30T09:48:18.010Z",
+  "id": "irUaO5c8WRtVJRSi",
+  "name": "Blog Post Generation",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fe6d2218-d2e1-4728-a9e9-849f4d3776bc",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        560,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4-1106-preview",
+        "prompt": {
+          "messages": [
+            {
+              "content": "=In a JSON format:\n -Write a blog post on the topic {{ $json.data.topic }}. \n-The written piece should use a {{ $json.data.tone }} tone, While effectively utilizing transitional words with the goal of reaching at least 300 words. \n-It should be written in the style of a {{ $json.data.style }} \n- It must cleverly incorporate the following keywords: {{ $json.data.keywords }}. \n-There may be provided details: {{ $json.data.details }} which will guide the blog content generation, like what to focus on.\n-Create an appealing, SEO-friendly slug (written with lowercase and dash instead of space. \n-Concise yet informative meta description no longer than 100 words. \n\n-Content should use markdown syntax:\n# Syntax guide\nHere’s an overview of Markdown syntax that you can use.\n## Headers\n```\n# This is a h1 tag\n## This is a h2 tag\n#### This is a h4 tag\n```\n\n## Emphasis\n```\n_This text will be italic_\n**This text will be bold**\n_You **can** combine them_\n```\n\n## Lists\n### Unordered\n```\n- Item 1\n- Item 2\n- Item 2a\n- Item 2b\n```\n\n### Ordered\n```\n1. Item 1\n1. Item 2\n1. Item 3\n1. Item 3a\n1. Item 3b\n```\n\n## Images\n\n```\n![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)\nFormat: ![Alt Text](url)\n```\n\n## Links\n\n```\nhttp://github.com - automatic!\n[GitHub](http://github.com)\n```\n\n## Blockquotes\n\n```\nAs Kanye West said:\n\n> We're living the future so\n> the present is our past.\n```\n\n## Inline code\n\n```\nI think you should use an\n`<addr>` element here instead.\n```\n\nformat should be: { 'slug': slug, 'title': title, 'tags': ['tag1', 'tag2', 'tag3'], 'metaDescription': meta_decription, 'content': content } JSON: "
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 3000,
+          "temperature": 0,
+          "topP": 1
+        }
+      },
+      "id": "7051defb-11fd-4556-a9a6-88cd0055af9c",
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        840,
+        360
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "ex61dsazTSXtiX7J",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  'data': {\n    'topic': 'How to feed unicorns',\n    'tone': 'Informative',\n    'style': 'Scientific',\n    'keywords': 'unicorns, feeding',\n    'details': 'write about how to feed unicorns'\n  }\n}"
+      },
+      "id": "0460893d-1f82-473b-9ed6-b12ee50f9150",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "-1001968652545",
+        "text": "={{ $json.data }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "9834d4c5-eadb-4484-97d7-efb0c31040eb",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "xZezKGDgD1hhCg2I",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return JSON.parse($json.message.content)"
+      },
+      "id": "06392519-aed4-44a8-b48a-36c804d6e527",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "path": "/home/root/test/",
+        "options": {
+          "fileName": "=test.json"
+        }
+      },
+      "id": "a9e06766-bed5-4be4-a686-7d63b23af5fe",
+      "name": "SSH",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        440
+      ],
+      "credentials": {
+        "sshPassword": {
+          "id": "HuaXvX0IIqCZ7YpJ",
+          "name": "HETZNER akbv.dev"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "options": {}
+      },
+      "id": "047a2403-b96b-4f84-85ea-431e0735bdf3",
+      "name": "Move Binary Data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return {data: $json}"
+      },
+      "id": "fecd1234-f377-4a18-a9a5-a5e2cbe22e05",
+      "name": "Code3",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-14T12:49:52.868Z",
+  "versionId": "d9722d43-04d7-42ab-8415-7c3340d05b0c"
+}
