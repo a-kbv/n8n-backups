@@ -1,0 +1,197 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-17T14:29:19.481Z",
+  "id": "0RobZ4TeGgRuZbaO",
+  "name": "submit email",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "join",
+        "responseMode": "lastNode",
+        "options": {
+          "responsePropertyName": "data"
+        }
+      },
+      "id": "665bf640-a3b3-44b4-832f-6e8a3a60bf84",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        380
+      ],
+      "webhookId": "c52be4eb-ba8f-4313-8673-65c9e081a5b0"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "data",
+              "value": "<form method=\"GET\" action=\"https://n8n.live/webhook/thank-you\">\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" name=\"email\"/>\n  <button type=\"submit\">Subscribe</button>\n</form>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "51e7cd14-19b8-4903-bf53-d6e67c7dad87",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "path": "thank-you",
+        "options": {
+          "responseData": "<h1>Wellcome to the party !!!</h1>"
+        }
+      },
+      "id": "29448eb0-d4d2-42e0-8fe0-da62ddb0366d",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        540
+      ],
+      "webhookId": "5ee738de-f8bb-47ed-8144-52ec0f4a59de"
+    },
+    {
+      "parameters": {
+        "chatId": "-1001968652545",
+        "text": "={{ $json.query.email }}",
+        "additionalFields": {}
+      },
+      "id": "d7dc6614-8c61-423c-9592-d10b8ae80ed1",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        540
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "xZezKGDgD1hhCg2I",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1C58-D6lDL2GxWm1FIdcJBMK07eacQci6t-65gG3DWTY",
+          "mode": "list",
+          "cachedResultName": "email-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C58-D6lDL2GxWm1FIdcJBMK07eacQci6t-65gG3DWTY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1013951054,
+          "mode": "list",
+          "cachedResultName": "email-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C58-D6lDL2GxWm1FIdcJBMK07eacQci6t-65gG3DWTY/edit#gid=1013951054"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.query.email }}",
+            "data": "={{ $json.headers }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "createDate",
+              "displayName": "createDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d303d86c-c983-402a-86ad-879c4ee98d41",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1100,
+        720
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "BDNk5hBPKdoZBYCc",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2023-10-21T13:35:40.557Z",
+  "versionId": "5a409f44-e72d-400d-a2ec-79b3ee11159d"
+}
