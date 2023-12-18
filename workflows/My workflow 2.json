@@ -1,0 +1,167 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Do More": {
+      "main": [
+        [
+          {
+            "node": "One More",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "One More": {
+      "main": [
+        [
+          {
+            "node": "Get Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-07T07:55:12.433Z",
+  "id": "7OApCNwy6m3F6fCF",
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "id": "e7519a86-05a1-4d47-8a73-07ae7f96e449"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "myValue"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        660,
+        460
+      ],
+      "id": "b6f7754b-1d43-4ddf-b941-da1e05d78678"
+    },
+    {
+      "parameters": {
+        "functionCode": "$item(0).$node[\"Set\"].json[\"myValue\"] += \"Bar\";\n\nreturn items;"
+      },
+      "name": "Do More",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        460
+      ],
+      "id": "d7301291-c21e-497b-93e9-ae3ae1cb3d3c"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "result",
+              "value": "={{$node[\"Set\"].json[\"myValue\"]}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Get Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        460
+      ],
+      "id": "3f77638c-f537-4025-afbf-e4a2301ba30d"
+    },
+    {
+      "parameters": {
+        "functionCode": "$item(0).$node[\"Set\"].json[\"myValue\"] += \"Baz\";\n\nreturn items;"
+      },
+      "name": "One More",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        460
+      ],
+      "id": "4cb563d5-fecf-431e-b6b2-ec2dc82e5ac1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconsole.log(\"staticData initial state: \" + JSON.stringify(staticData));\nstaticData.apples = \"green\";\nconsole.log(\"staticData after adding apples: \" + JSON.stringify(staticData));\n\nreturn staticData;"
+      },
+      "id": "46000e26-686b-4d45-a580-00682a862757",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1700,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "$items[0]\n\n$item(0).$node[\"Set\"].json[\"myValue\"] += \"Foo\";\n\nreturn items;\n\nreturn items;"
+      },
+      "id": "4241f769-c37d-410f-a281-78b3f394b206",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        460
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-07T07:55:12.433Z",
+  "versionId": "afad4dc1-f4cf-4030-8cf3-4603951670c1"
+}
