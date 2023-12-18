@@ -1,0 +1,161 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Group Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-17T08:23:48.514Z",
+  "id": "WQDarN5W3FQYNsM2",
+  "name": "telegram-test-webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "telegram",
+        "responseMode": "lastNode",
+        "options": {
+          "responsePropertyName": "data"
+        }
+      },
+      "id": "76bc2ff1-9638-4173-9369-9693ef13fbba",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        380
+      ],
+      "webhookId": "d0fca508-4124-4017-8b66-1f5d69aeece1"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "data",
+              "value": " <!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Telegram Bot Interface</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <script src=\"https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp\"></script>\n    <style>\n        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');\n        body {\n            font-family: 'Roboto', sans-serif;\n        }\n    </style>\n</head>\n<body class=\"bg-gray-800 text-white min-h-screen flex items-center justify-center\">\n    <div class=\"bg-gray-700 p-8 rounded-xl shadow-2xl max-w-md mx-auto\">\n        <h1 class=\"text-2xl font-bold mb-6 text-center\">Perspecta Telegram Bot</h1>\n        \n        <form action=\"https://n8n.live/webhook/send-message\" method=\"post\" class=\"flex flex-col space-y-4\">\n            <label for=\"message\" class=\"block text-lg font-semibold\">Message</label>\n            <textarea id=\"message\" name=\"message\" rows=\"4\" class=\"form-textarea mt-1 block w-full rounded-md bg-gray-900 text-white border-transparent focus:border-gray-500 focus:bg-gray-800 focus:ring-0\" placeholder=\"Your message here...\"></textarea>\n            \n            <button type=\"submit\" class=\"bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200\">\n                Submit\n            </button>\n        </form>\n    </div>\n    <script>\n    document.addEventListener('DOMContentLoaded', function() {\n    var textarea = document.getElementById('message');\n\n    // Focus the textarea when the page has loaded\n    textarea.focus();\n\n    textarea.addEventListener('keydown', function(event) {\n        if (event.key === 'Enter') {\n            event.preventDefault(); // prevent the default action for Enter key\n            this.form.submit(); // submit form\n        }\n    });\n});\n    </script>\n</body>\n</html>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "961a18a6-790b-4172-9406-f31a3f3b192b",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-message",
+        "options": {
+          "responseData": " <meta http-equiv=\"Refresh\" content=\"0; url='https://n8n.live/webhook/telegram'\" />"
+        }
+      },
+      "id": "6c4c544f-ed7b-48e5-9b45-8b8de5bba01d",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        540
+      ],
+      "webhookId": "c725a734-504b-4cec-8724-7f4de8e17272"
+    },
+    {
+      "parameters": {
+        "chatId": "5990054546",
+        "text": "={{ $json.body.message }}",
+        "additionalFields": {}
+      },
+      "id": "86335215-057a-4b29-af9e-091ee6987a21",
+      "name": "Private Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        900
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "w6bPpzUmWCfFUWFn",
+          "name": "perspecta_telegram_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-4043834850",
+        "text": "={{ $json.body.message }}",
+        "additionalFields": {}
+      },
+      "id": "96186c1f-8b31-4af8-a0da-18cce766ca92",
+      "name": "Group Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        720
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "w6bPpzUmWCfFUWFn",
+          "name": "perspecta_telegram_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "-1002019680607",
+        "text": "={{ $json.body.message }}",
+        "additionalFields": {}
+      },
+      "id": "30d5de5f-76b2-473d-bf4f-a0acb13d6bd0",
+      "name": "Channel Message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        540
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "w6bPpzUmWCfFUWFn",
+          "name": "perspecta_telegram_bot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2023-12-15T14:28:56.478Z",
+  "versionId": "d11ee563-da35-41ec-8725-10da53021d5b"
+}
