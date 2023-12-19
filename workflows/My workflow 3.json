@@ -1,0 +1,276 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTML Extract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML Extract": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        []
+      ]
+    },
+    "Filter Anime News": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Only get new RSS": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Filter Anime News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Only get new RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-19T14:27:16.996Z",
+  "id": "WYahFfWVtTerkILM",
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "imgURL",
+              "value": "={{  $json[\"imgURL\"][5]  }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "61102606-49cf-4285-b3be-256934e2c6b9",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json[\"guid\"] }}",
+        "responseFormat": "string",
+        "jsonParameters": true,
+        "options": {
+          "batchInterval": 1000
+        }
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        920,
+        200
+      ],
+      "typeVersion": 1,
+      "id": "cd65d7a1-b5e2-4da9-a3f9-0b782bfa724d"
+    },
+    {
+      "parameters": {
+        "extractionValues": {
+          "values": [
+            {
+              "key": "imgURL",
+              "cssSelector": "link",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "HTML Extract",
+      "type": "n8n-nodes-base.htmlExtract",
+      "position": [
+        1120,
+        200
+      ],
+      "typeVersion": 1,
+      "id": "b251e3b7-94b3-4ec7-a069-c6c06586b1db"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "59ca5fdc-96e4-4f08-892a-655d27c394e9",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        360
+      ],
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "title",
+              "value": "={{ $json[\"title\"] }}"
+            },
+            {
+              "name": "link",
+              "value": "={{ $json[\"link\"] }}"
+            },
+            {
+              "name": "Date",
+              "value": "={{ $json[\"isoDate\"] }}"
+            },
+            {
+              "name": "contentSnippet",
+              "value": "={{ $json[\"contentSnippet\"] }}"
+            },
+            {
+              "name": "guid",
+              "value": "={{ $json[\"guid\"] }}"
+            },
+            {
+              "name": "categories",
+              "value": "={{ $json[\"categories\"] }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "4f4ab498-891c-4fb7-89d2-f5e6089e8159",
+      "name": "Filter Anime News",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        920,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const staticData = getWorkflowStaticData('global');\nconst newRSSIds = items.map(item => item.json[\"pubDate\"]);\nconst oldRSSIds = staticData.oldRSSIds; \n\nif (!oldRSSIds) {\n  staticData.oldRSSIds = newRSSIds;\n  return items;\n}\n\n\nconst actualNewRSSIds = newRSSIds.filter((id) => !oldRSSIds.includes(id));\nconst actualNewRSS = items.filter((data) => actualNewRSSIds.includes(data.json['pubDate']));\nstaticData.oldRSSIds = [...actualNewRSSIds, ...oldRSSIds];\n\nreturn actualNewRSS;\n"
+      },
+      "name": "Only get new RSS",
+      "type": "n8n-nodes-base.function",
+      "position": [
+        600,
+        300
+      ],
+      "typeVersion": 1,
+      "id": "6785f320-6e68-4f9b-829a-1396c161a5e7"
+    },
+    {
+      "parameters": {
+        "url": "https://www.animenewsnetwork.com/news/rss.xml?ann-edition=us"
+      },
+      "id": "3807509a-0868-4d24-9804-01cc2b8b0152",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "*/30 * * * *"
+            }
+          ]
+        }
+      },
+      "id": "2cf1d2f9-a447-46ac-a95e-9f14ac5c36fd",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-19T14:27:16.996Z",
+  "versionId": "0630828b-66a4-49d0-8824-76296da9ddad"
+}
