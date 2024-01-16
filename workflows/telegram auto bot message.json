@@ -1,0 +1,106 @@
+{
+  "active": true,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-16T10:28:24.380Z",
+  "id": "2Eu880cKFJ9IHYx9",
+  "name": "telegram auto bot message",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "id": "668530fa-d6dc-4dfa-bc94-9659085dfe9b",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        360
+      ],
+      "webhookId": "c0910b7c-6240-4c8c-bb19-178fb3d54ca2",
+      "credentials": {
+        "telegramApi": {
+          "id": "w6bPpzUmWCfFUWFn",
+          "name": "perspecta_telegram_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.message.chat.id }}",
+        "text": "=Hello,  {{ $json.message.from.first_name }}  {{ $json.message.from.last_name }}\n-----------------\nYou said, \"{{ $json.message.text }}\"",
+        "additionalFields": {}
+      },
+      "id": "c2930bbc-c7f2-448a-aef2-71d42d25b712",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        360
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "w6bPpzUmWCfFUWFn",
+          "name": "perspecta_telegram_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.message.from.id }}",
+              "operation": "equal",
+              "value2": "={{ $json.message.chat.id }}"
+            }
+          ]
+        }
+      },
+      "id": "8322f30c-c0b7-4316-9b97-41849df0f684",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        540
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-16T10:45:16.574Z",
+  "versionId": "ab6abb69-019a-490f-b3bf-9db4f4cbaef8"
+}
