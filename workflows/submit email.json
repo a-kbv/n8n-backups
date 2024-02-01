@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Webhook": {
       "main": [
@@ -31,6 +31,7 @@
   },
   "createdAt": "2023-10-17T14:29:19.481Z",
   "id": "0RobZ4TeGgRuZbaO",
+  "meta": null,
   "name": "submit email",
   "nodes": [
     {
@@ -192,6 +193,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2023-10-21T13:35:40.557Z",
-  "versionId": "5a409f44-e72d-400d-a2ec-79b3ee11159d"
+  "updatedAt": "2024-01-31T20:14:15.591Z",
+  "versionId": "b4fb0fe9-5b06-4ebf-a8a2-b6a0d068b30e"
 }
