@@ -37,6 +37,9 @@
   },
   "createdAt": "2023-10-13T14:13:19.453Z",
   "id": "6ztpU6Rr1Kw6hFdB",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "Github",
   "nodes": [
     {
@@ -58,7 +61,8 @@
         },
         "events": [
           "*"
-        ]
+        ],
+        "options": {}
       },
       "id": "a2a4e967-a571-45c1-80d4-d3229c5aed77",
       "name": "Github Trigger",
@@ -71,7 +75,7 @@
       "webhookId": "77557619-73a4-4dcf-8629-e252d81e9061",
       "credentials": {
         "githubOAuth2Api": {
-          "id": "xeTUnsoBsthaJOOd",
+          "id": "YVtSAFF7JxYLm4aL",
           "name": "GitHub account"
         }
       }
@@ -92,8 +96,8 @@
       ],
       "credentials": {
         "telegramApi": {
-          "id": "CHQ9sHdDu1TkjoG6",
-          "name": "Github Bot"
+          "id": "XRq7zdmuAxDNJ1oL",
+          "name": "@akbv_github_bot"
         }
       }
     },
@@ -116,7 +120,8 @@
         },
         "events": [
           "*"
-        ]
+        ],
+        "options": {}
       },
       "id": "22d84676-0d1b-4eaf-aa60-ad9059e7a412",
       "name": "Github Trigger1",
@@ -124,12 +129,12 @@
       "typeVersion": 1,
       "position": [
         820,
-        520
+        540
       ],
       "webhookId": "b396459a-7c9e-4669-b78e-32cd2507eb22",
       "credentials": {
         "githubOAuth2Api": {
-          "id": "xeTUnsoBsthaJOOd",
+          "id": "YVtSAFF7JxYLm4aL",
           "name": "GitHub account"
         }
       }
@@ -153,7 +158,8 @@
         },
         "events": [
           "*"
-        ]
+        ],
+        "options": {}
       },
       "id": "c89c8c78-9fd7-42ea-a836-871d16791c09",
       "name": "Github Trigger2",
@@ -161,12 +167,12 @@
       "typeVersion": 1,
       "position": [
         820,
-        660
+        700
       ],
       "webhookId": "5392ee15-c3e2-4153-b43d-2529ce5b6018",
       "credentials": {
         "githubOAuth2Api": {
-          "id": "xeTUnsoBsthaJOOd",
+          "id": "YVtSAFF7JxYLm4aL",
           "name": "GitHub account"
         }
       }
@@ -178,19 +184,19 @@
   },
   "staticData": {
     "node:Github Trigger": {
-      "webhookId": 438000389,
+      "webhookId": 458211593,
       "webhookEvents": [
         "*"
       ]
     },
     "node:Github Trigger1": {
-      "webhookId": 438000390,
+      "webhookId": 458211594,
       "webhookEvents": [
         "*"
       ]
     },
     "node:Github Trigger2": {
-      "webhookId": 438000391,
+      "webhookId": 458211598,
       "webhookEvents": [
         "*"
       ]
@@ -198,6 +204,6 @@
   },
   "tags": [],
   "triggerCount": 3,
-  "updatedAt": "2023-10-13T14:29:33.268Z",
-  "versionId": "1cb34fb7-ffd3-4722-8780-6a51477eee86"
+  "updatedAt": "2024-02-01T11:11:18.539Z",
+  "versionId": "21cb6dcd-d8cd-47b7-8801-4a2e85a330f1"
 }
