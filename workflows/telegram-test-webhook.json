@@ -26,6 +26,7 @@
   },
   "createdAt": "2023-11-17T08:23:48.514Z",
   "id": "WQDarN5W3FQYNsM2",
+  "meta": null,
   "name": "telegram-test-webhook",
   "nodes": [
     {
@@ -156,6 +157,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2023-12-15T14:28:56.478Z",
-  "versionId": "d11ee563-da35-41ec-8725-10da53021d5b"
+  "updatedAt": "2024-01-31T20:24:14.417Z",
+  "versionId": "1658a6fe-feb9-4e20-ab0b-dcef054d4175"
 }
