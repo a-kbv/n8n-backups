@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Webhook": {
       "main": [
@@ -15,6 +15,7 @@
   },
   "createdAt": "2023-12-12T11:24:23.537Z",
   "id": "7xVSdnFREr2BhE38",
+  "meta": null,
   "name": "Viber Webhook",
   "nodes": [
     {
@@ -57,6 +58,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2023-12-12T14:35:37.543Z",
-  "versionId": "92c8f17e-3725-4d0f-a5b8-1fe684d16bff"
+  "updatedAt": "2024-01-31T20:14:24.117Z",
+  "versionId": "4cb807cd-e837-4833-860b-f6fedbae78bb"
 }
