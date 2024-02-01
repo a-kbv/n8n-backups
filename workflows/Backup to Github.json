@@ -455,8 +455,8 @@
       "typeVersion": 1,
       "credentials": {
         "n8nApi": {
-          "id": "jmXF67e0MpgZFpC6",
-          "name": "n8n.live api"
+          "id": "Ai5YOHl2LW4HvyDz",
+          "name": "n8n account"
         }
       }
     },
@@ -492,6 +492,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-02-01T11:13:41.639Z",
-  "versionId": "72aee778-47b1-45ed-98e3-e7a378bb66e7"
+  "updatedAt": "2024-02-01T11:15:31.663Z",
+  "versionId": "034a234b-6831-460a-8849-5302f13b4594"
 }
