@@ -32,7 +32,7 @@
             "index": 0
           },
           {
-            "node": "Get Unsend",
+            "node": "Read/Write Files from Disk1",
             "type": "main",
             "index": 0
           }
@@ -43,82 +43,35 @@
       "main": [
         [
           {
-            "node": "Get Data",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Get Unsend": {
-      "main": [
-        [
-          {
-            "node": "Set",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Telegram",
+            "node": "Convert to File",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Set": {
+    "Convert to File": {
       "main": [
         [
           {
-            "node": "Google Sheets1",
+            "node": "Read/Write Files from Disk",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IF": {
+    "Read/Write Files from Disk1": {
       "main": [
-        [
-          {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Get Data": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "IF",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
   "createdAt": "2023-11-24T15:56:10.301Z",
   "id": "PuKNZxQ7kR0P7CLU",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "VIK",
   "nodes": [
     {
@@ -172,130 +125,6 @@
     },
     {
       "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY",
-          "mode": "list",
-          "cachedResultName": "vik-n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Лист1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "date": "={{ $input.all()[1].json['r-date'] }}",
-            "md5": "={{ $input.all()[1].json['r-md5'] }}",
-            "message": "={{ $input.all()[1].json['r-message'] }}",
-            "send": "=0",
-            "identifier": "101"
-          },
-          "matchingColumns": [
-            "identifier"
-          ],
-          "schema": [
-            {
-              "id": "md5",
-              "displayName": "md5",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "date",
-              "displayName": "date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "send",
-              "displayName": "send",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "message",
-              "displayName": "message",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "identifier",
-              "displayName": "identifier",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "02c53e36-98b9-452b-b51e-d68e47adb610",
-      "name": "Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        2140,
-        280
-      ],
-      "alwaysOutputData": false,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "BDNk5hBPKdoZBYCc",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "chatId": "-1001968652545",
-        "text": "={{ $json.date }} - {{ $json.message }}",
-        "replyMarkup": "=",
-        "forceReply": {},
-        "replyKeyboardOptions": {},
-        "replyKeyboardRemove": {},
-        "additionalFields": {}
-      },
-      "id": "62953e10-0786-46dc-8407-6008a3fff289",
-      "name": "Telegram",
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1,
-      "position": [
-        1260,
-        580
-      ],
-      "credentials": {
-        "telegramApi": {
-          "id": "xZezKGDgD1hhCg2I",
-          "name": "Telegram account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "rule": {
           "interval": [
             {
@@ -316,7 +145,7 @@
     {
       "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "function md5(inputString) {\n    var hc=\"0123456789abcdef\";\n    function rh(n) {var j,s=\"\";for(j=0;j<=3;j++) s+=hc.charAt((n>>(j*8+4))&0x0F)+hc.charAt((n>>(j*8))&0x0F);return s;}\n    function ad(x,y) {var l=(x&0xFFFF)+(y&0xFFFF);var m=(x>>16)+(y>>16)+(l>>16);return (m<<16)|(l&0xFFFF);}\n    function rl(n,c)            {return (n<<c)|(n>>>(32-c));}\n    function cm(q,a,b,x,s,t)    {return ad(rl(ad(ad(a,q),ad(x,t)),s),b);}\n    function ff(a,b,c,d,x,s,t)  {return cm((b&c)|((~b)&d),a,b,x,s,t);}\n    function gg(a,b,c,d,x,s,t)  {return cm((b&d)|(c&(~d)),a,b,x,s,t);}\n    function hh(a,b,c,d,x,s,t)  {return cm(b^c^d,a,b,x,s,t);}\n    function ii(a,b,c,d,x,s,t)  {return cm(c^(b|(~d)),a,b,x,s,t);}\n    function sb(x) {\n        var i;var nblk=((x.length+8)>>6)+1;var blks=new Array(nblk*16);for(i=0;i<nblk*16;i++) blks[i]=0;\n        for(i=0;i<x.length;i++) blks[i>>2]|=x.charCodeAt(i)<<((i%4)*8);\n        blks[i>>2]|=0x80<<((i%4)*8);blks[nblk*16-2]=x.length*8;return blks;\n    }\n    var i,x=sb(\"\"+inputString),a=1732584193,b=-271733879,c=-1732584194,d=271733878,olda,oldb,oldc,oldd;\n    for(i=0;i<x.length;i+=16) {olda=a;oldb=b;oldc=c;oldd=d;\n        a=ff(a,b,c,d,x[i+ 0], 7, -680876936);d=ff(d,a,b,c,x[i+ 1],12, -389564586);c=ff(c,d,a,b,x[i+ 2],17,  606105819);\n        b=ff(b,c,d,a,x[i+ 3],22,-1044525330);a=ff(a,b,c,d,x[i+ 4], 7, -176418897);d=ff(d,a,b,c,x[i+ 5],12, 1200080426);\n        c=ff(c,d,a,b,x[i+ 6],17,-1473231341);b=ff(b,c,d,a,x[i+ 7],22,  -45705983);a=ff(a,b,c,d,x[i+ 8], 7, 1770035416);\n        d=ff(d,a,b,c,x[i+ 9],12,-1958414417);c=ff(c,d,a,b,x[i+10],17,     -42063);b=ff(b,c,d,a,x[i+11],22,-1990404162);\n        a=ff(a,b,c,d,x[i+12], 7, 1804603682);d=ff(d,a,b,c,x[i+13],12,  -40341101);c=ff(c,d,a,b,x[i+14],17,-1502002290);\n        b=ff(b,c,d,a,x[i+15],22, 1236535329);a=gg(a,b,c,d,x[i+ 1], 5, -165796510);d=gg(d,a,b,c,x[i+ 6], 9,-1069501632);\n        c=gg(c,d,a,b,x[i+11],14,  643717713);b=gg(b,c,d,a,x[i+ 0],20, -373897302);a=gg(a,b,c,d,x[i+ 5], 5, -701558691);\n        d=gg(d,a,b,c,x[i+10], 9,   38016083);c=gg(c,d,a,b,x[i+15],14, -660478335);b=gg(b,c,d,a,x[i+ 4],20, -405537848);\n        a=gg(a,b,c,d,x[i+ 9], 5,  568446438);d=gg(d,a,b,c,x[i+14], 9,-1019803690);c=gg(c,d,a,b,x[i+ 3],14, -187363961);\n        b=gg(b,c,d,a,x[i+ 8],20, 1163531501);a=gg(a,b,c,d,x[i+13], 5,-1444681467);d=gg(d,a,b,c,x[i+ 2], 9,  -51403784);\n        c=gg(c,d,a,b,x[i+ 7],14, 1735328473);b=gg(b,c,d,a,x[i+12],20,-1926607734);a=hh(a,b,c,d,x[i+ 5], 4,    -378558);\n        d=hh(d,a,b,c,x[i+ 8],11,-2022574463);c=hh(c,d,a,b,x[i+11],16, 1839030562);b=hh(b,c,d,a,x[i+14],23,  -35309556);\n        a=hh(a,b,c,d,x[i+ 1], 4,-1530992060);d=hh(d,a,b,c,x[i+ 4],11, 1272893353);c=hh(c,d,a,b,x[i+ 7],16, -155497632);\n        b=hh(b,c,d,a,x[i+10],23,-1094730640);a=hh(a,b,c,d,x[i+13], 4,  681279174);d=hh(d,a,b,c,x[i+ 0],11, -358537222);\n        c=hh(c,d,a,b,x[i+ 3],16, -722521979);b=hh(b,c,d,a,x[i+ 6],23,   76029189);a=hh(a,b,c,d,x[i+ 9], 4, -640364487);\n        d=hh(d,a,b,c,x[i+12],11, -421815835);c=hh(c,d,a,b,x[i+15],16,  530742520);b=hh(b,c,d,a,x[i+ 2],23, -995338651);\n        a=ii(a,b,c,d,x[i+ 0], 6, -198630844);d=ii(d,a,b,c,x[i+ 7],10, 1126891415);c=ii(c,d,a,b,x[i+14],15,-1416354905);\n        b=ii(b,c,d,a,x[i+ 5],21,  -57434055);a=ii(a,b,c,d,x[i+12], 6, 1700485571);d=ii(d,a,b,c,x[i+ 3],10,-1894986606);\n        c=ii(c,d,a,b,x[i+10],15,   -1051523);b=ii(b,c,d,a,x[i+ 1],21,-2054922799);a=ii(a,b,c,d,x[i+ 8], 6, 1873313359);\n        d=ii(d,a,b,c,x[i+15],10,  -30611744);c=ii(c,d,a,b,x[i+ 6],15,-1560198380);b=ii(b,c,d,a,x[i+13],21, 1309151649);\n        a=ii(a,b,c,d,x[i+ 4], 6, -145523070);d=ii(d,a,b,c,x[i+11],10,-1120210379);c=ii(c,d,a,b,x[i+ 2],15,  718787259);\n        b=ii(b,c,d,a,x[i+ 9],21, -343485551);a=ad(a,olda);b=ad(b,oldb);c=ad(c,oldc);d=ad(d,oldd);\n    }\n    return rh(a)+rh(b)+rh(c)+rh(d);\n}\n\n\n\nreturn {\"r-date\": $json.date, \"r-message\": $json.message, \"r-md5\": md5($json.date + $json.message)};"
+        "jsCode": "function md5(inputString) {\n    var hc=\"0123456789abcdef\";\n    function rh(n) {var j,s=\"\";for(j=0;j<=3;j++) s+=hc.charAt((n>>(j*8+4))&0x0F)+hc.charAt((n>>(j*8))&0x0F);return s;}\n    function ad(x,y) {var l=(x&0xFFFF)+(y&0xFFFF);var m=(x>>16)+(y>>16)+(l>>16);return (m<<16)|(l&0xFFFF);}\n    function rl(n,c)            {return (n<<c)|(n>>>(32-c));}\n    function cm(q,a,b,x,s,t)    {return ad(rl(ad(ad(a,q),ad(x,t)),s),b);}\n    function ff(a,b,c,d,x,s,t)  {return cm((b&c)|((~b)&d),a,b,x,s,t);}\n    function gg(a,b,c,d,x,s,t)  {return cm((b&d)|(c&(~d)),a,b,x,s,t);}\n    function hh(a,b,c,d,x,s,t)  {return cm(b^c^d,a,b,x,s,t);}\n    function ii(a,b,c,d,x,s,t)  {return cm(c^(b|(~d)),a,b,x,s,t);}\n    function sb(x) {\n        var i;var nblk=((x.length+8)>>6)+1;var blks=new Array(nblk*16);for(i=0;i<nblk*16;i++) blks[i]=0;\n        for(i=0;i<x.length;i++) blks[i>>2]|=x.charCodeAt(i)<<((i%4)*8);\n        blks[i>>2]|=0x80<<((i%4)*8);blks[nblk*16-2]=x.length*8;return blks;\n    }\n    var i,x=sb(\"\"+inputString),a=1732584193,b=-271733879,c=-1732584194,d=271733878,olda,oldb,oldc,oldd;\n    for(i=0;i<x.length;i+=16) {olda=a;oldb=b;oldc=c;oldd=d;\n        a=ff(a,b,c,d,x[i+ 0], 7, -680876936);d=ff(d,a,b,c,x[i+ 1],12, -389564586);c=ff(c,d,a,b,x[i+ 2],17,  606105819);\n        b=ff(b,c,d,a,x[i+ 3],22,-1044525330);a=ff(a,b,c,d,x[i+ 4], 7, -176418897);d=ff(d,a,b,c,x[i+ 5],12, 1200080426);\n        c=ff(c,d,a,b,x[i+ 6],17,-1473231341);b=ff(b,c,d,a,x[i+ 7],22,  -45705983);a=ff(a,b,c,d,x[i+ 8], 7, 1770035416);\n        d=ff(d,a,b,c,x[i+ 9],12,-1958414417);c=ff(c,d,a,b,x[i+10],17,     -42063);b=ff(b,c,d,a,x[i+11],22,-1990404162);\n        a=ff(a,b,c,d,x[i+12], 7, 1804603682);d=ff(d,a,b,c,x[i+13],12,  -40341101);c=ff(c,d,a,b,x[i+14],17,-1502002290);\n        b=ff(b,c,d,a,x[i+15],22, 1236535329);a=gg(a,b,c,d,x[i+ 1], 5, -165796510);d=gg(d,a,b,c,x[i+ 6], 9,-1069501632);\n        c=gg(c,d,a,b,x[i+11],14,  643717713);b=gg(b,c,d,a,x[i+ 0],20, -373897302);a=gg(a,b,c,d,x[i+ 5], 5, -701558691);\n        d=gg(d,a,b,c,x[i+10], 9,   38016083);c=gg(c,d,a,b,x[i+15],14, -660478335);b=gg(b,c,d,a,x[i+ 4],20, -405537848);\n        a=gg(a,b,c,d,x[i+ 9], 5,  568446438);d=gg(d,a,b,c,x[i+14], 9,-1019803690);c=gg(c,d,a,b,x[i+ 3],14, -187363961);\n        b=gg(b,c,d,a,x[i+ 8],20, 1163531501);a=gg(a,b,c,d,x[i+13], 5,-1444681467);d=gg(d,a,b,c,x[i+ 2], 9,  -51403784);\n        c=gg(c,d,a,b,x[i+ 7],14, 1735328473);b=gg(b,c,d,a,x[i+12],20,-1926607734);a=hh(a,b,c,d,x[i+ 5], 4,    -378558);\n        d=hh(d,a,b,c,x[i+ 8],11,-2022574463);c=hh(c,d,a,b,x[i+11],16, 1839030562);b=hh(b,c,d,a,x[i+14],23,  -35309556);\n        a=hh(a,b,c,d,x[i+ 1], 4,-1530992060);d=hh(d,a,b,c,x[i+ 4],11, 1272893353);c=hh(c,d,a,b,x[i+ 7],16, -155497632);\n        b=hh(b,c,d,a,x[i+10],23,-1094730640);a=hh(a,b,c,d,x[i+13], 4,  681279174);d=hh(d,a,b,c,x[i+ 0],11, -358537222);\n        c=hh(c,d,a,b,x[i+ 3],16, -722521979);b=hh(b,c,d,a,x[i+ 6],23,   76029189);a=hh(a,b,c,d,x[i+ 9], 4, -640364487);\n        d=hh(d,a,b,c,x[i+12],11, -421815835);c=hh(c,d,a,b,x[i+15],16,  530742520);b=hh(b,c,d,a,x[i+ 2],23, -995338651);\n        a=ii(a,b,c,d,x[i+ 0], 6, -198630844);d=ii(d,a,b,c,x[i+ 7],10, 1126891415);c=ii(c,d,a,b,x[i+14],15,-1416354905);\n        b=ii(b,c,d,a,x[i+ 5],21,  -57434055);a=ii(a,b,c,d,x[i+12], 6, 1700485571);d=ii(d,a,b,c,x[i+ 3],10,-1894986606);\n        c=ii(c,d,a,b,x[i+10],15,   -1051523);b=ii(b,c,d,a,x[i+ 1],21,-2054922799);a=ii(a,b,c,d,x[i+ 8], 6, 1873313359);\n        d=ii(d,a,b,c,x[i+15],10,  -30611744);c=ii(c,d,a,b,x[i+ 6],15,-1560198380);b=ii(b,c,d,a,x[i+13],21, 1309151649);\n        a=ii(a,b,c,d,x[i+ 4], 6, -145523070);d=ii(d,a,b,c,x[i+11],10,-1120210379);c=ii(c,d,a,b,x[i+ 2],15,  718787259);\n        b=ii(b,c,d,a,x[i+ 9],21, -343485551);a=ad(a,olda);b=ad(b,oldb);c=ad(c,oldc);d=ad(d,oldd);\n    }\n    return rh(a)+rh(b)+rh(c)+rh(d);\n}\n\n\n\nreturn {\"date\": $json.date, \"message\": $json.message, \"md5\": md5($json.date + $json.message)};"
       },
       "id": "41e592e2-35b8-45e5-89f7-fad6f013ab9d",
       "name": "HTML Data",
@@ -329,216 +158,47 @@
     },
     {
       "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY",
-          "mode": "list",
-          "cachedResultName": "vik-n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Лист1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit#gid=0"
-        },
-        "filtersUI": {
-          "values": [
-            {
-              "lookupColumn": "send",
-              "lookupValue": "0"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "9468d254-1c07-4369-a77c-00439616aa0e",
-      "name": "Get Unsend",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        1040,
-        580
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "BDNk5hBPKdoZBYCc",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "values": {
-          "string": [
-            {
-              "name": "md5",
-              "value": "={{ $json.md5 }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "b0073982-e9a3-449b-a6f5-e64c3e2f0b22",
-      "name": "Set",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 2,
-      "position": [
-        1220,
-        780
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "appendOrUpdate",
-        "documentId": {
-          "__rl": true,
-          "value": "1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY",
-          "mode": "list",
-          "cachedResultName": "vik-n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Лист1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit#gid=0"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "md5": "={{ $json.md5 }}",
-            "send": "1"
-          },
-          "matchingColumns": [
-            "md5"
-          ],
-          "schema": [
-            {
-              "id": "md5",
-              "displayName": "md5",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "date",
-              "displayName": "date",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            },
-            {
-              "id": "send",
-              "displayName": "send",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "message",
-              "displayName": "message",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": true
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "fe4060b7-44a0-496e-b7b0-14c7a841d8eb",
-      "name": "Google Sheets1",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        1400,
-        780
-      ],
-      "alwaysOutputData": false,
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "BDNk5hBPKdoZBYCc",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "number": [
-            {
-              "value1": "={{ $input.last().json['r-md5'] }}",
-              "operation": "notEqual",
-              "value2": "={{ $input.first().json['md5'] }}"
-            }
-          ]
+        "operation": "toJson",
+        "options": {
+          "fileName": "vik-data"
         }
       },
-      "id": "30319c9d-0c1e-43dd-8f86-b8960ccc1665",
-      "name": "IF",
-      "type": "n8n-nodes-base.if",
+      "id": "95bd33db-b3d1-439f-bf34-b12aea441a3a",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1,
       "position": [
-        1940,
-        460
+        1640,
+        220
       ]
     },
     {
       "parameters": {
-        "documentId": {
-          "__rl": true,
-          "value": "1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY",
-          "mode": "list",
-          "cachedResultName": "vik-n8n",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Лист1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zHSkt0E5QKQ2i8s_8FwtdG3bRtg21YAONr9kjJ0zTCY/edit#gid=0"
-        },
+        "operation": "write",
+        "fileName": "vik-data",
         "options": {}
       },
-      "id": "f98432c7-cd79-42a0-9f9b-783eec5659e9",
-      "name": "Get Data",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
+      "id": "ddebfd69-c916-4822-8073-8957e7863a1f",
+      "name": "Read/Write Files from Disk",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
       "position": [
-        1620,
-        260
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "BDNk5hBPKdoZBYCc",
-          "name": "Google Sheets account"
-        }
-      }
+        1860,
+        220
+      ]
     },
     {
-      "parameters": {},
-      "id": "5fa143ce-1116-4781-8db4-9ec9cd384a97",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
+      "parameters": {
+        "fileSelector": "vik-data",
+        "options": {}
+      },
+      "id": "9beea224-f273-432e-8bba-012d6a6a50a7",
+      "name": "Read/Write Files from Disk1",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
       "position": [
-        1760,
-        460
+        1100,
+        600
       ]
     }
   ],
@@ -553,6 +213,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-01-31T20:24:17.984Z",
-  "versionId": "a02f4a19-0f1f-4161-b955-d94091545ca7"
+  "updatedAt": "2024-02-15T15:45:26.067Z",
+  "versionId": "2bd3e4c2-608b-4fcc-808a-8cedf83f78a9"
 }
