@@ -1,0 +1,69 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-19T08:37:54.760Z",
+  "id": "aQGvefm4BoUoOGnl",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "test windows scheduled task",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "test-windows-scheduled-task",
+        "options": {}
+      },
+      "id": "22e44652-a3cc-4047-88fc-5c8986036aaa",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        360
+      ],
+      "webhookId": "7c5c7ce5-4849-44ef-9924-7abe0959f446"
+    },
+    {
+      "parameters": {
+        "chatId": "895933687",
+        "text": "RABOTI",
+        "additionalFields": {}
+      },
+      "id": "bb4e7965-e47e-4a67-902f-eab0478c747a",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        360
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "p0YrQJvCMCQ6em9r",
+          "name": "@n8nmessagingbot"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-19T08:48:40.615Z",
+  "versionId": "49955952-0373-4d68-9a9f-5d8fa78976dc"
+}
